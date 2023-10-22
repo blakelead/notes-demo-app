@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #EEE0C9;
+}
+
+textarea {
+    background-color: #F1F0E8;
+}
+
+button#add-note-btn {
+    background-color: #96B6C5;
+}
+
+.container {
+    margin-top: 40px;
+}
+
+.alert-container {
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    z-index: 1000;
+}
+
+.card {
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #96B6C5;
+    color: #F1F0E8;
+    font-size: 1.5rem;
+}
+
+.card-body {
+    padding: 20px;
+    background-color: #ADC4CE;
+}
+
+.note-card {
+    position: relative;
+    background-color: #F1F0E8;
+    margin: 15px 0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.remove {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: #ADC4CE;
+    font-size: 1.2rem;
+}
+
+.remove:hover {
+    color: #96B6C5;
+}
+
+.alert {
+    margin-bottom: 15px;
+    font-size: 0.8rem;
+    width: 300px;
+    max-height: 20vh;
+    overflow-y: auto;
+    overflow-wrap: break-word;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #96B6C5;
+    color: #F1F0E8;
+    z-index: 1000;
+    opacity: 0.9;
+}
+
+.alert:hover {
+    cursor: pointer;
+    opacity: 1;
+}
