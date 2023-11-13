@@ -4,8 +4,14 @@ services:
     image: mongo:7-jammy
     restart: always
     healthcheck:
-      test: ["CMD", "mongosh", "--eval", "'db.runCommand({ping:1})'"]
-    networks: [notes-app]
+      test:
+        [
+          "CMD",
+          "mongosh",
+          "--eval",
+          "'db.runCommand({ping:1})'"
+        ]
+    networks: [ notes-app ]
   api:
     build:
       dockerfile: Dockerfile
@@ -14,7 +20,7 @@ services:
       - 8000:8000
     environment:
       MONGODB_URI: db:27017
-    networks: [notes-app]
+    networks: [ notes-app ]
     depends_on:
       db:
         condition: service_healthy
@@ -26,8 +32,8 @@ services:
     environment:
       API_URL: http://localhost:8000
     ports:
-      - 5000:80
-    networks: [notes-app]
+      - 8080:80
+    networks: [ notes-app ]
     depends_on:
       api:
         condition: service_healthy

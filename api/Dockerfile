@@ -9,6 +9,7 @@ RUN adduser --disabled-password worker
 COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
 WORKDIR /app
+COPY profiles /profiles
 COPY app.py .
 COPY gunicorn.conf.py .
 RUN chown -R worker .
