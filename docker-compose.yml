@@ -30,7 +30,7 @@ services:
       context: front
     restart: always
     environment:
-      API_URL: http://localhost:8000
+      API_URL: http://api:8000
     ports:
       - 8080:80
     networks: [ notes-app ]

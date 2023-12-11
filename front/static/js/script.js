@@ -1,12 +1,12 @@
 // Fetch notes from the server
 const getNotes = async () => {
     try {
-        const response = await fetch("__API_URL__/api/notes");
+        const response = await fetch("/api/notes");
         const data = await response.json();
         if (response.status !== 500) {
             populateNotes(data);
         } else {
-            showAlert(data.error);
+            showAlert(data.error || "An error occurred");
         }
     } catch (error) {
         console.error(`Error fetching notes: ${error}`);
@@ -19,10 +19,11 @@ const createNote = async () => {
     const note = document.getElementById("new-note").value.trim();
     if (!note) {
         showAlert("La note ne peut pas etre vide");
+        return;
     }
     const payload = { note };
     try {
-        const response = await fetch("__API_URL__/api/notes", {
+        const response = await fetch("/api/notes", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
@@ -30,9 +31,9 @@ const createNote = async () => {
         const data = await response.json();
         if (response.status !== 500) {
             getNotes();
-            note.innerHTML = "";
+            document.getElementById("new-note").value = "";
         } else {
-            showAlert(data.error);
+            showAlert(data.error || "An error occurred");
         }
     } catch (error) {
         console.error(`Error creating a note: ${error}`);
@@ -43,12 +44,12 @@ const createNote = async () => {
 // Delete a note
 const deleteNote = async id => {
     try {
-        const response = await fetch(`__API_URL__/api/notes/${id}`, { method: "DELETE" });
+        const response = await fetch(`/api/notes/${id}`, { method: "DELETE" });
         const data = await response.json();
         if (response.status !== 500) {
             getNotes();
         } else {
-            showAlert(data.error);
+            showAlert(data.error || "An error occurred");
         }
     } catch (error) {
         console.error(`Error deleting a note: ${error}`);
@@ -56,7 +57,7 @@ const deleteNote = async id => {
     }
 };
 
-// Population the UI with fetched notes
+// Populate the UI with fetched notes
 const populateNotes = data => {
     const noteList = document.getElementById("note-list");
     noteList.innerHTML = "";
